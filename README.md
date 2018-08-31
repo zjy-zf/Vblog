@@ -1,4 +1,4 @@
-# vue-log
+# vue-face-recognition
 
 > A Vue.js project
 
