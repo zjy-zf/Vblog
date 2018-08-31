@@ -1,4 +1,4 @@
-# vue-face-recognition
+# vue-blog
 
 > A Vue.js project
 
