@@ -15,7 +15,18 @@ const store = new Vuex.Store({
 	getters,
 	state: {
 		dialogVisible: true
+	},
+	mutations: {
+		TOGGLELOGINDIALOG(state){
+			state.dialogVisible = !state.dialogVisible;
+		}
+	},
+	actions: {
+		toggleLoginDialog({commit}){
+			commit("TOGGLELOGINDIALOG");
+		}
 	}
+
 })
 
 export default store

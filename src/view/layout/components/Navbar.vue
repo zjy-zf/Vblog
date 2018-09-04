@@ -23,14 +23,14 @@
         class="ztblog-el-doopdown"
         trigger="click"
        >
-        <span class="el-dropdown-link" style="margin-right: 15px;">
+        <span class="el-dropdown-link" style="margin-right: 15px;" @click="loginDialog">
           登录
         </span>
-        <el-dropdown-menu slot="dropdown">
+        <!-- <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>查看</el-dropdown-item>
           <el-dropdown-item>新增</el-dropdown-item>
           <el-dropdown-item>删除</el-dropdown-item>
-        </el-dropdown-menu>
+        </el-dropdown-menu> -->
       </el-dropdown>
     </el-header>
 </template>
@@ -80,6 +80,9 @@
       resolvePath(...paths){
         return path.resolve(this.basePath, ...paths)
       },
+      loginDialog(){
+        this.$store.dispatch("toggleLoginDialog");
+      }
 		}
 	}
 		
