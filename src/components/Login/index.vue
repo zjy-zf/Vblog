@@ -12,7 +12,7 @@
 	    <el-form-item label="密码" :label-width="formLabelWidth">
 	      <el-input v-model="form.username" auto-complete="off"></el-input>
 	    </el-form-item>
-	    <el-button type="primary" @click="loginSubmit" width="100%" center>登陆</el-button>
+	    <el-button type="primary" @click="loginSubmit" class="">登陆</el-button>
 	    <el-button type="primary" @click="registerClick">注册</el-button>
 	  </el-form>
 	</el-dialog>
