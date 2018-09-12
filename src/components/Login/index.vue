@@ -1,7 +1,7 @@
 <template>
 	<el-dialog
 	  title="登陆"
-	  :visible.sync="this.$store.state.dialogVisible"
+	  :visible.sync="dialogVisible"
 	  width="30%"
 	  center
 	>
@@ -15,10 +15,6 @@
 	    <el-button type="primary" @click="loginSubmit" width="100%" center>登陆</el-button>
 	    <el-button type="primary" @click="registerClick">注册</el-button>
 	  </el-form>
-	  <span slot="footer" class="dialog-footer">
-	    <el-button @click="toggleLoginDialog">取 消</el-button>
-	    <el-button type="primary" @click="toggleLoginDialog">确 定</el-button>
-	  </span>
 	</el-dialog>
 </template>
 <script>
@@ -28,8 +24,8 @@
 		name: 'login',
 		data() {
 			return {
-				// dialogVisible: false,
-				formLabelWidth: "120px",
+				dialogVisible: this.$store.state.dialogVisible,
+				formLabelWidth: "80px",
 				form: {
 					username: "",
 					password: ""
@@ -37,9 +33,9 @@
 			}
 		},
 		computed: {
-			dialogVisible() {
-				return this.$store.state.dialogVisible
-			}
+			// dialogVisible() {
+			// 	return this.$store.state.dialogVisible
+			// }
 		},
 		methods: {
 			toggleLoginDialog(){

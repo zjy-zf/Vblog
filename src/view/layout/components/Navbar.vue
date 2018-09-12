@@ -32,6 +32,23 @@
           <el-dropdown-item>删除</el-dropdown-item>
         </el-dropdown-menu> -->
       </el-dropdown>
+      <el-dialog
+        title="登陆"
+        :visible.sync="dialogVisible"
+        width="30%"
+        center
+      >
+        <el-form :model="form">
+          <el-form-item label="用户名" :label-width="formLabelWidth">
+            <el-input v-model="form.username" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" :label-width="formLabelWidth">
+            <el-input v-model="form.password" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-button type="primary" @click="loginSubmit" width="100%" center>登陆</el-button>
+          <el-button type="primary" @click="registerClick">注册</el-button>
+        </el-form>
+      </el-dialog>
     </el-header>
 </template>
 
@@ -39,17 +56,25 @@
   import { mapGetters } from "vuex"
   import path from 'path'
   import NavbarItem from './NavbarItem'
+  import Login from '@/components/Login'
 
 	export default {
 		name: "navbar",
     components: {
-      NavbarItem
+      NavbarItem,
+      Login
     },
     data(){
       return {
         activeIndex: "1",
         onlyOneChild: null,
         basePath: "",
+        dialogVisible: false,
+        form: {
+          username: '',
+          password: ''
+        },
+        formLabelWidth: '80px'
       }
     },
     computed: {
@@ -81,7 +106,14 @@
         return path.resolve(this.basePath, ...paths)
       },
       loginDialog(){
-        this.$store.dispatch("toggleLoginDialog");
+        // this.$store.dispatch("toggleLoginDialog");
+        this.dialogVisible = true
+      },
+      loginSubmit(){
+
+      },
+      registerClick(){
+
       }
 		}
 	}
@@ -92,6 +124,7 @@
   .ztblog-el-header {
     background-color: #BFAB86;
     text-align: center;
+    position: relative;
     .ztblog-el-menu {
       display: inline-block;
       width: 1000px;
@@ -105,7 +138,8 @@
       top: 0;
       .el-dropdown-link{
         cursor:pointer;
-        color:#409eff;
+        color: white;
+        outline: none;
       }
     }
     

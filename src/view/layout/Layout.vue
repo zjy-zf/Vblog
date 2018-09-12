@@ -6,7 +6,6 @@
       <el-aside width="200px">aside</el-aside>
     </el-container>
     <el-footer>footer</el-footer>
-    <login></login>
   </el-container>
 </template>
 
@@ -33,6 +32,5 @@ export default {
   .ztblog-container {
     width: 1000px;
     margin:0 auto;
-    // background-color: #ddd;
   }
 </style>

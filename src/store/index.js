@@ -14,7 +14,7 @@ const store = new Vuex.Store({
 	},
 	getters,
 	state: {
-		dialogVisible: true
+		dialogVisible: false
 	},
 	mutations: {
 		TOGGLELOGINDIALOG(state){
