@@ -20,13 +20,13 @@
     },
     props: {
     	route: {
-			type: Object,
-			required: true
-		},
-		basePath: {
-			type: String,
-			default: ""
-		}
+  			type: Object,
+  			required: true
+  		},
+  		basePath: {
+  			type: String,
+  			default: ""
+  		}
     },
     computed: {
       ...mapGetters([

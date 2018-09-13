@@ -19,19 +19,9 @@
         :route="route"
       ></navbar-item>
       </el-menu>
-       <el-dropdown
-        class="ztblog-el-doopdown"
-        trigger="click"
-       >
-        <span class="el-dropdown-link" style="margin-right: 15px;" @click="loginDialog">
+      <span class="blog-login-btn" style="margin-right: 15px;" @click="loginDialog">
           登录
-        </span>
-        <!-- <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>查看</el-dropdown-item>
-          <el-dropdown-item>新增</el-dropdown-item>
-          <el-dropdown-item>删除</el-dropdown-item>
-        </el-dropdown-menu> -->
-      </el-dropdown>
+      </span>
       <el-dialog
         title="登陆"
         :visible.sync="dialogVisible"
@@ -56,18 +46,14 @@
   import { mapGetters } from "vuex"
   import path from 'path'
   import NavbarItem from './NavbarItem'
-  import Login from '@/components/Login'
 
 	export default {
 		name: "navbar",
     components: {
-      NavbarItem,
-      Login
+      NavbarItem
     },
     data(){
       return {
-        activeIndex: "1",
-        onlyOneChild: null,
         basePath: "",
         dialogVisible: false,
         form: {
@@ -86,21 +72,6 @@
       handleSelect(key, keyPath){
         console.log(key, keyPath);
         this.$router.push({path: key});
-      },
-      hasOneShowingChild(children){
-        const showingChildren = children.filter(item => {
-          if(item.hidden){
-            return false;
-          }else{
-            this.onlyOneChild = item;
-            return true
-          }
-        })
-        if(showingChildren.length === 1){
-          return true
-        } else {
-          return false
-        }
       },
       resolvePath(...paths){
         return path.resolve(this.basePath, ...paths)
@@ -129,18 +100,16 @@
       display: inline-block;
       width: 1000px;
     }
-    .ztblog-el-doopdown {
+    .blog-login-btn {
       height: 60px;
       line-height: 60px;
       display: block;
       position: absolute;
       right: 0;
       top: 0;
-      .el-dropdown-link{
-        cursor:pointer;
-        color: white;
-        outline: none;
-      }
+      cursor:pointer;
+      color: white;
+      outline: none;
     }
     
   }

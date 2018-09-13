@@ -1,10 +1,10 @@
 <template>
 	<div class="blog-main-container">
-		<el-carousel height="450px" arrow="never">
+		<!-- <el-carousel height="450px" arrow="never">
 	      <el-carousel-item v-for="item in bannerImages" :key="item.index">
 	        <img :src="item.src" alt="">
 	      </el-carousel-item>
-	    </el-carousel>
+	    </el-carousel> -->
 	    <div class="blog-topnews">
 	    	<h2>最新文章
 				<!-- <span>
