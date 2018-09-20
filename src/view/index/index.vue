@@ -1,43 +1,27 @@
 <template>
 	<div class="blog-main-container">
-		<!-- <el-carousel height="450px" arrow="never">
+		<el-carousel height="450px">
 	      <el-carousel-item v-for="item in bannerImages" :key="item.index">
-	        <img :src="item.src" alt="">
+	        <img :src="item.src" alt="" width="100%">
 	      </el-carousel-item>
-	    </el-carousel> -->
-	    <div class="blog-topnews">
-	    	<h2>最新文章
-				<!-- <span>
-					<router-link to="/essays">韶华追忆</router-link>
-					<router-link to="/technology">技术分享</router-link>
-				</span> -->
-	    	</h2>
-	    	<div class="blogs" v-for="item in list" :key="item.id">
-                <ul class="reveal-top">
-                    <h3><a href="javascript:void(0)" :title="item.title" target="_blank">{{item.title}}</a></h3>
-                    <p>{{item.abstract}}
-                        
-	
-                        <a href="javascript:void(0)" target="_blank" style="color: #759b08;padding-left:5px;">[详情]</a>
-                    </p>
-                    <p class="autor">
-                        <span class="lm f_l" :style="lmStyle"><a href="javascript:void(0)" style="color: #759b08">{{item.author}}</a></span>
-                        <span class="dtime f_l" :style="dtimeStyle">{{item.createTime}}</span>
-                        <!-- <input class="zan_cookie" type="hidden" value="2">
-                        <input class="zan_newsid" type="hidden" value="469"> -->
-                        <span class="label_bottom f_r" style="padding-left: 0;">
-                            <a href="javascript:void(0)" onclick="return false;" class="yz_zan" style="">29</a>
-                        </span>
-                        <span class="viewnum f_r">浏览（621）</span>
-                        <span class="pingl f_r">
-                            <a href="javascript:void(0)">
-				               <span id="sourceId::469" class="cy_cmt_count">评论（20 )</span>
-                            </a>
-                        </span>
-                    </p>
-            	</ul>
-            </div>
-            <div class="blogs-loading"><!-- 加载更多... --></div>
+	    </el-carousel>
+	    <div class="blog-datalist">
+	    	<el-card shadow="always" class="blog-datalist-box" v-for="i in [1,2,3,4,5,6,7,8,9,10]" :key="i">
+		      <article>
+		      	<header>
+		      		<a href="javascript:void(0)" class="article-header-label">Python</a>
+		      		<h2 class="article-header-title">
+		      			<a href="javascript:void(0)">破解网站登录加密–RSA</a>
+		      		</h2>
+		      	</header>
+		      	<p>想查数据就免不了搜索，搜索就离不开搜索引擎，百度、谷歌都是一个非常庞大复杂的搜索引擎，他们几乎索引了互联网上开放的所有网页和数据。然而对于我们自己的业务数据来说，肯定就没必要用这么复杂的技术了，如果我们想实现自己的搜索引擎，方便存储和检索，Elasticsearch 就是不二选择，它是一个全文搜索引擎，可以快速地储存、搜索和分析海量数据。</p>
+		      	<footer class="article-auth">
+		      		<span><svg-icon icon-class="user"></svg-icon> 周天</span>
+		      		<span><i class="el-icon-time"></i> 2018-09-20 14:17:21</span>
+		      		<span><svg-icon icon-class="comment"></svg-icon> 10</span>
+		      	</footer>
+		      </article>
+		    </el-card>
 	    </div>
 	</div>
 </template>
@@ -82,27 +66,6 @@
 		created() {
 			this.getList()
 		},
-		updated() {
-			/*this.scrollReveal.reveal('.reveal-top', {
-			     // 动画的时长
-			    duration: 600,
-			    // 延迟时间
-			    delay: 200,
-			    // 动画开始的位置，'bottom', 'left', 'top', 'right'
-			    origin: 'bottom',
-			    // 回滚的时候是否再次触发动画
-			    reset: false,
-			    // 在移动端是否使用动画
-			    mobile: false,
-			    // 滚动的距离，单位可以用%，rem等
-			    distance: '30px',
-			    // 其他可用的动画效果
-			    opacity: 0.001,
-			    easing: 'linear',
-			    scale: 0.9,
-			});*/
-			
-		},
 		mounted(){
 			window.addEventListener('scroll', this.handleScroll)
 		},
@@ -113,12 +76,12 @@
 			getList(){
 				this.loadStatus = false;
 				fetchList(this.listQuery).then(response => {
-					let loadingInstance = Loading.service({
-						target: ".blogs-loading"
-					})
+					// let loadingInstance = Loading.service({
+					// 	target: ".blogs-loading"
+					// })
 					this.list = this.list.concat(response.data.items)
 					this.total = this.total + response.data.total
-					loadingInstance.close();
+					// loadingInstance.close();
 					this.loadStatus = true;
 				})
 			},
@@ -138,73 +101,71 @@
 	}
 </script>
 <style rel="style/scss" lang="scss" scoped>
-	.blog-main-container {
-		.f_l {
-			float: left;
-		}
-		.f_r {
-			float: right;
-		}
-		.blog-topnews{
-			h2{
-				font-size: 16px;
-			    font-weight: bold;
-			    line-height: 36px;
-			    color: #333;
-			    border-bottom: #db6d4c 4px solid;
-
-			    span {
-			    	float: right;
-				    font-size: 12px;
-				    font-weight: normal;
-			    }
-			}
-
-			.blogs {
-				padding: 30px 0;
-			    position: relative;
-			    border-bottom: #BFAB86 1px solid;
-			    overflow: hidden;
-				&:last-child {
-					border-bottom: none !important;
-				}
-			    ul {
-				    line-height: 22px;
-				    width: 100%;
-				    color: #777;
-				    margin: 0;
-				    padding: 0;
-				    h3 {
-				    	font-size: 16px;
-					    font-weight: bold;
-					    transition: all .5s;
-					    margin-bottom: 10px;
-				    }
-				    p {
-				    	font-size: 13px;
-				    }
-
-				    .autor {
-				    	overflow: hidden;
-					    clear: both;
-					    margin: 10px 0;
-					    display: inline-block;
-					    color: #999;
-					    width: 100%;
-					    span {
-					    	margin: 0 10px 0 0;
-					    	padding-left: 20px;
-					    }
-				    }
-			    }
-			}
-
-		}
-	}
-	.blogs-loading {
-		height: 30px;
-		width: 100%;
+	.blog-datalist {
 		margin-top: 20px;
-		text-align: center;
+		.blog-datalist-box {
+			margin-bottom: 20px;
+			article {
+				header {
+					margin-bottom: 15px;
+					.article-header-label {
+					    margin-right: 5px;
+					    position: relative;
+					    // top: -2px;
+					    padding: 4px 6px 4px;
+					    background-color: #d9534f;
+					    display: inline-block;
+						line-height: 14px;
+						color: #fff;
+						vertical-align: baseline;
+						white-space: nowrap;
+						&:after {
+							content: "";
+							display: block;
+							position: absolute;
+							right: -6px;
+							top: 5px;
+							width: 0;
+							height: 0;
+							border-color: transparent;
+							border-style: solid;
+							border-width: 6px;
+							border-right-width: 0;
+							border-left-color: #d9534f;
+						}
+					}
+					.article-header-title {
+						color: #00a67c;
+						display: inline;
+					    font-size: 20px;
+					    margin: 0;
+					    font-weight: 400;
+					    position: relative;
+					    top: 1px;
+					    line-height: 25px;
+					    margin-left: 10px;
+					}
+				}
+				p {
+					color: #777;
+				    line-height: 24px;
+				    margin-bottom: 0;
+				    font-style: normal;
+				    font-size: 14px;
+				}
+				footer {
+					float: right;
+					margin-bottom: 15px;
+					span {
+						color: #999;
+						margin-right: 20px;
+						&:last-child {
+							margin-right: 0;
+						}
+					}
+				}
+			}
+		}
+		
 	}	
 </style>

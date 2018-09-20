@@ -98,7 +98,7 @@
     position: relative;
     .ztblog-el-menu {
       display: inline-block;
-      width: 1000px;
+      width: 1200px;
     }
     .blog-login-btn {
       height: 60px;
