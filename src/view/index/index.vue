@@ -159,6 +159,7 @@
 					span {
 						color: #999;
 						margin-right: 20px;
+						font-size: 14px;
 						&:last-child {
 							margin-right: 0;
 						}
