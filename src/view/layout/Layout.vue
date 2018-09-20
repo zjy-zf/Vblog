@@ -1,6 +1,7 @@
 <template>
   <el-container class="app-container">
     <navbar></navbar>
+    <Announce/>
     <el-container class="ztblog-container">
       <el-main class="blog-main"><router-view></router-view></el-main>
       <el-aside width="360px" class="blog-aside"><Siderbar/></el-aside>
@@ -14,13 +15,15 @@
 import Navbar from './components/Navbar'
 import BackToTop from '@/components/ScrollToTop/BackToTop'
 import Siderbar from './components/Sidebar'
+import Announce from '@/view/announce'
 
 export default {
   name: 'layout',
   components: {
     Navbar,
     BackToTop,
-    Siderbar
+    Siderbar,
+    Announce
   },
   computed: {
 
@@ -36,7 +39,7 @@ export default {
   background-color: #eee;
   padding: 0;
   .ztblog-container {
-    max-width: 1200px;
+    width: 1200px;
     margin:0 auto;
     .blog-main {
       padding: 20px 10px 0 0;
