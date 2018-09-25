@@ -8,6 +8,7 @@
     </el-container>
     <el-footer class="app-footer">天哥版权所有</el-footer>
     <BackToTop/>
+    <Login/>
   </el-container>
 </template>
 
@@ -16,6 +17,7 @@ import Navbar from './components/Navbar'
 import BackToTop from '@/components/ScrollToTop/BackToTop'
 import Siderbar from './components/Sidebar'
 import Announce from '@/view/announce'
+import Login from '@/components/Login'
 
 export default {
   name: 'layout',
@@ -23,7 +25,8 @@ export default {
     Navbar,
     BackToTop,
     Siderbar,
-    Announce
+    Announce,
+    Login
   },
   computed: {
 

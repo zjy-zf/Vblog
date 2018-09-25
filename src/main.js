@@ -10,7 +10,7 @@ import store from './store'
 
 import i18n from './lang' // Internationalization
 import './icons' // icon
-import './mock'
+// import './mock'
 // import './permission'
 
 Vue.config.productionTip = false

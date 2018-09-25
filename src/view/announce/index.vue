@@ -7,8 +7,8 @@
 				</p>
 			</div>
 			<div class="blog-announce-right">
-				<a href="javascript:void(0)"><svg-icon icon-class="user" style="color: #999;"></svg-icon> 投稿</a>
-				<a href="javascript:void(0)" style="margin-left: 20px"><svg-icon icon-class="login" style="color: #999;"></svg-icon> 登陆</a>
+				<a href="javascript:void(0)" @click="editArtical" ><svg-icon icon-class="user" style="color: #999;"></svg-icon> 投稿</a>
+				<a href="javascript:void(0)" @click="login" style="margin-left: 20px"><svg-icon icon-class="login" style="color: #999;"></svg-icon> 登陆</a>
 			</div>
 		</div>
 	</el-card>
@@ -17,6 +17,14 @@
 <script>
 	export default {
 		name: 'Announce',
+		methods: {
+			editArtical() {
+				this.$router.push({path: "editArtical"});
+			},
+			login() {
+				this.$store.dispatch("openLoginDialog")
+			}
+		}
 	}
 </script>
 

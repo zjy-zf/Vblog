@@ -13,10 +13,10 @@
         
       >
       <navbar-item
-        v-for="route in permission_routers"
-        :bath-path="route.path"
-        :key="route.name"
-        :route="route"
+        v-for="item in menu"
+        :bath-path="item.treePath"
+        :key="item.menuName"
+        :item="item"
       ></navbar-item>
       </el-menu>
     </el-header>
@@ -26,6 +26,7 @@
   import { mapGetters } from "vuex"
   import path from 'path'
   import NavbarItem from './NavbarItem'
+  import { getMenu } from '@/api/menu'
 
 	export default {
 		name: "navbar",
@@ -34,8 +35,13 @@
     },
     data(){
       return {
-        basePath: ""
+        menu: []
       }
+    },
+    created() {
+      getMenu().then(response => {
+        this.menu = response.data.data
+      })
     },
     computed: {
       ...mapGetters([
@@ -46,15 +52,6 @@
       handleSelect(key, keyPath){
         console.log(key, keyPath);
         this.$router.push({path: key});
-      },
-      resolvePath(...paths){
-        return path.resolve(this.basePath, ...paths)
-      },
-      loginSubmit(){
-
-      },
-      registerClick(){
-
       }
 		}
 	}

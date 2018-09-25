@@ -17,13 +17,19 @@ const store = new Vuex.Store({
 		dialogVisible: false
 	},
 	mutations: {
-		TOGGLELOGINDIALOG(state){
-			state.dialogVisible = !state.dialogVisible;
+		OPENLOGINDIALOG(state){
+			state.dialogVisible = true
+		},
+		CLOSELOGINDIALOG(state){
+			state.dialogVisible = false
 		}
 	},
 	actions: {
-		toggleLoginDialog({commit}){
-			commit("TOGGLELOGINDIALOG");
+		openLoginDialog({commit}){
+			commit("OPENLOGINDIALOG")
+		},
+		closeLoginDialog({commit}){
+			commit("CLOSELOGINDIALOG");
 		}
 	}
 

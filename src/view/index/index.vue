@@ -64,7 +64,7 @@
 			}
 		},
 		created() {
-			this.getList()
+			// this.getList()
 		},
 		mounted(){
 			window.addEventListener('scroll', this.handleScroll)
