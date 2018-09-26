@@ -15,11 +15,14 @@
 </template>
 
 <script>
+	import { checkLoginStatus } from '@/api/login'
 	export default {
 		name: 'Announce',
 		methods: {
 			editArtical() {
-				this.$router.push({path: "editArtical"});
+				checkLoginStatus().then(response => {
+					this.$router.push({path: "editArtical"});
+				})
 			},
 			login() {
 				this.$store.dispatch("openLoginDialog")

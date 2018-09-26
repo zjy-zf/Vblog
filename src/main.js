@@ -7,16 +7,13 @@ import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/style/index.scss' // global css
 import store from './store'
-
-import i18n from './lang' // Internationalization
 import './icons' // icon
 // import './mock'
 // import './permission'
 
 Vue.config.productionTip = false
 Vue.use(Element, {
-	size: 'medium', // set element-ui default size
-  	i18n: (key, value) => i18n.t(key, value)
+	size: 'medium' // set element-ui default size
 })
 
 /* eslint-disable no-new */
@@ -24,6 +21,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  i18n,
   render: h => h(App)
 })

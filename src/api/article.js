@@ -16,17 +16,9 @@ export function fetchArticle(id) {
   })
 }
 
-export function fetchPv(pv) {
-  return request({
-    url: '/article/pv',
-    method: 'get',
-    params: { pv }
-  })
-}
-
 export function createArticle(data) {
   return request({
-    url: '/article/create',
+    url: '/blog/article/add',
     method: 'post',
     data
   })

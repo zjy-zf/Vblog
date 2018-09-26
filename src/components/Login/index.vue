@@ -10,32 +10,52 @@
 	>
 	  <el-tabs tab-position="left" style="height: 300px;">
 	    <el-tab-pane label="登录">
-	    	<el-form :inline="true" :model="form" class="demo-form-inline">
-				  <el-form-item style="width: 100%">
-				    <el-input v-model="form.username" placeholder="用户名" style="width: 100%"></el-input>
-				  </el-form-item>
-				  <el-form-item style="width: 100%">
-				    <el-input v-model="form.password" placeholder="密码" style="width: 100%"></el-input>
-				  </el-form-item>
-				  <el-form-item style="width: 100%">
-				    <el-button type="primary" @click="onSubmit" style="width: 100%">登陆</el-button>
-				  </el-form-item>
-				</el-form>
+	    	<el-form :inline="true" :model="loginForm" class="demo-form-inline">
+			  <el-form-item>
+			    <el-input v-model="loginForm.username" placeholder="用户名" style="width: 300px"></el-input>
+			  </el-form-item>
+			  <el-form-item>
+			    <el-input v-model="loginForm.password" placeholder="密码" style="width: 300px"></el-input>
+			  </el-form-item>
+			  <el-form-item>
+			    <el-button type="primary" @click="loginSubmit" style="width: 300px">登陆</el-button>
+			  </el-form-item>
+			</el-form>
 	    </el-tab-pane>
-	    <el-tab-pane label="注册">注册</el-tab-pane>
+	    <el-tab-pane label="注册">
+	    	<el-form :inline="true" :model="registerForm" class="demo-form-inline">
+			  <el-form-item>
+			    <el-input v-model="registerForm.username" placeholder="用户名" style="width: 300px"></el-input>
+			  </el-form-item>
+			  <el-form-item>
+			    <el-input v-model="registerForm.password" placeholder="密码" style="width: 300px"></el-input>
+			  </el-form-item>
+			  <el-form-item>
+			    <el-input v-model="registerForm.yanzheng" placeholder="验证码" style="width: 200px"></el-input>
+			  </el-form-item>
+			  <el-form-item>
+			    <el-button type="primary" @click="registerClick" style="width: 300px">注册</el-button>
+			  </el-form-item>
+			</el-form>
+	    </el-tab-pane>
 	  </el-tabs>
 	</el-dialog>
 </template>
 <script>
 	import { mapGetters } from 'vuex'
-
+	import { login, register } from '@/api/login'
 	export default {
 		name: 'login',
 		data() {
 			return {
-				form: {
+				loginForm: {
 					username: "",
 					password: ""
+				},
+				registerForm: {
+					username: "",
+					password: "",
+					yanzheng: ""
 				}
 			}
 		},
@@ -52,10 +72,14 @@
 				this.$store.dispatch('closeLoginDialog')
 			},
 			loginSubmit(){
+				login(this.loginForm).then(response => {
 
+				})
 			},
 			registerClick(){
+				register(this.registerForm).then(response => {
 
+				})
 			}
 		}
 	}

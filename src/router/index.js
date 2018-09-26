@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/view/layout/Layout'
-// import Login from '@/view/Login'
+import MainLayout from '@/view/managerLayout/Layout'
 Vue.use(Router)
 
 export const constantRouterMap = [
@@ -14,6 +14,16 @@ export const constantRouterMap = [
       component: () => import('@/view/index'),
       name: 'index',
       meta: { title: '首页', noCache: true }
+    }]
+  },{
+    path: "/editArtical",
+    component: MainLayout,
+    redirect: '/editArtical/index',
+    children: [{
+      path: '/editArtical/index',
+      component: () => import('@/view/artical/EditArtical'),
+      name: 'editArtical',
+      meta: { title: '编辑文章', noCache: true }
     }]
   },
   {

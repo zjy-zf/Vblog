@@ -1,12 +1,17 @@
 import request from '@/utils/request'
+import path from './path'
 
-export function loginByUsername(username, password) {
-  const data = {
-    username,
-    password
-  }
+export function login(data) {
   return request({
-    url: '/login/login',
+    url: path+'/blog/user/login',
+    method: 'post',
+    data: data
+  })
+}
+
+export function register(data){
+  return request({
+    url: path+'/blog/user/registry',
     method: 'post',
     data
   })
@@ -14,8 +19,15 @@ export function loginByUsername(username, password) {
 
 export function logout() {
   return request({
-    url: '/login/logout',
+    url: path+'/login/logout',
     method: 'post'
+  })
+}
+
+export function checkLoginStatus() {
+  return request({
+    url: path+"/blog/user/checkLogin",
+    method: 'get'
   })
 }
 
