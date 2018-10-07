@@ -1,32 +1,47 @@
 import request from '@/utils/request'
+import { param } from '@/utils/index'
 
-export function fetchList(query) {
-  return request({
-    url: '/article/list',
-    method: 'get',
-    params: query
-  })
-}
-
-export function fetchArticle(id) {
-  return request({
-    url: '/article/detail',
-    method: 'get',
-    params: { id }
-  })
-}
-
+//添加新文章
 export function createArticle(data) {
   return request({
-    url: '/blog/article/add',
+    url: '/article/add',
     method: 'post',
     data
   })
 }
 
-export function updateArticle(data) {
+//删除文章
+export function delArticle(data) {
   return request({
-    url: '/article/update',
+    url: '/article/del',
+    method: 'post',
+    data
+  })
+}
+
+//获取文章详情
+export function getArticleDetail(data) {
+  return request({
+    url: '/article/detail',
+    method: 'get',
+    params: data
+  })
+}
+
+
+//获取文章列表
+export function getArticleList(data){
+  return request({
+    url: '/article/list',
+    method: 'post',
+    data: param(data)
+  })
+}
+
+//发布文章
+export function publishArticle(data) {
+  return reequest({
+    url: '/article/publish',
     method: 'post',
     data
   })

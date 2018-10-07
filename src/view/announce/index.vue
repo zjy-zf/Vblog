@@ -8,7 +8,17 @@
 			</div>
 			<div class="blog-announce-right">
 				<a href="javascript:void(0)" @click="editArtical" ><svg-icon icon-class="user" style="color: #999;"></svg-icon> 投稿</a>
-				<a href="javascript:void(0)" @click="login" style="margin-left: 20px"><svg-icon icon-class="login" style="color: #999;"></svg-icon> 登陆</a>
+				<a v-if="!userInfo" href="javascript:void(0)" @click="login" style="margin-left: 20px"><svg-icon icon-class="login" style="color: #999;"></svg-icon> 登陆</a>
+				<el-dropdown v-if="userInfo">
+				  <span class="el-dropdown-link">
+				  	{{userInfo.nickName}}
+				  </span>
+				  <el-dropdown-menu slot="dropdown">
+				    <el-dropdown-item>评论</el-dropdown-item>
+				    <el-dropdown-item>收藏</el-dropdown-item>
+				    <el-dropdown-item>退出</el-dropdown-item>
+				  </el-dropdown-menu>
+				</el-dropdown>
 			</div>
 		</div>
 	</el-card>
@@ -16,13 +26,20 @@
 
 <script>
 	import { checkLoginStatus } from '@/api/login'
+	import { mapGetters } from 'vuex'
 	export default {
 		name: 'Announce',
+		computed: {
+			...mapGetters([
+					'userInfo'
+				])
+		},
 		methods: {
 			editArtical() {
-				checkLoginStatus().then(response => {
-					this.$router.push({path: "editArtical"});
-				})
+				// checkLoginStatus().then(response => {
+				// 	this.$router.push({path: "/editArtical"});
+				// })
+				this.$router.push({path: "/editArtical"})
 			},
 			login() {
 				this.$store.dispatch("openLoginDialog")

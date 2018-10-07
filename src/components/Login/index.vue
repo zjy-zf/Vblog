@@ -12,10 +12,10 @@
 	    <el-tab-pane label="登录">
 	    	<el-form :inline="true" :model="loginForm" class="demo-form-inline">
 			  <el-form-item>
-			    <el-input v-model="loginForm.username" placeholder="用户名" style="width: 300px"></el-input>
+			    <el-input v-model="loginForm.userAccount" placeholder="用户名" style="width: 300px"></el-input>
 			  </el-form-item>
-			  <el-form-item>
-			    <el-input v-model="loginForm.password" placeholder="密码" style="width: 300px"></el-input>
+			  <el-form-item> 
+			    <el-input v-model="loginForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item>
 			    <el-button type="primary" @click="loginSubmit" style="width: 300px">登陆</el-button>
@@ -25,14 +25,17 @@
 	    <el-tab-pane label="注册">
 	    	<el-form :inline="true" :model="registerForm" class="demo-form-inline">
 			  <el-form-item>
-			    <el-input v-model="registerForm.username" placeholder="用户名" style="width: 300px"></el-input>
+			    <el-input v-model="registerForm.userAccount" placeholder="账号" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item>
-			    <el-input v-model="registerForm.password" placeholder="密码" style="width: 300px"></el-input>
+			    <el-input v-model="registerForm.nickName" placeholder="昵称" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item>
+			    <el-input v-model="registerForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
+			  </el-form-item>
+			  <!-- <el-form-item>
 			    <el-input v-model="registerForm.yanzheng" placeholder="验证码" style="width: 200px"></el-input>
-			  </el-form-item>
+			  </el-form-item> -->
 			  <el-form-item>
 			    <el-button type="primary" @click="registerClick" style="width: 300px">注册</el-button>
 			  </el-form-item>
@@ -49,11 +52,12 @@
 		data() {
 			return {
 				loginForm: {
-					username: "",
+					userAccount: "",
 					password: ""
 				},
 				registerForm: {
-					username: "",
+					userAccount: "",
+					nickName: "",
 					password: "",
 					yanzheng: ""
 				}
@@ -72,13 +76,28 @@
 				this.$store.dispatch('closeLoginDialog')
 			},
 			loginSubmit(){
-				login(this.loginForm).then(response => {
-
+				/*login(this.loginForm).then(response => {
+					this.$message({
+	          message: '登陆成功',
+	          type: 'success'
+	        })
+	        this.$store.dispatch('closeLoginDialog')
+				})*/
+				this.$store.dispatch('Login').then(response => {
+					this.$message({
+	          message: '登陆成功',
+	          type: 'success'
+	        })
+	        this.$store.dispatch('closeLoginDialog')
 				})
 			},
 			registerClick(){
 				register(this.registerForm).then(response => {
-
+					this.$message({
+	          message: '注册成功',
+	          type: 'success'
+	        })
+	        this.$store.dispatch('closeLoginDialog')
 				})
 			}
 		}

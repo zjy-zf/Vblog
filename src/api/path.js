@@ -1,3 +1,4 @@
-const path = "http://47.106.203.155"
+// const path = "http://204.152.220.106"
+const path = ""
 
 export default path

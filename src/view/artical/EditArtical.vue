@@ -69,7 +69,7 @@
 <script>
 import Tinymce from '@/components/Tinymce'
 import MDinput from '@/components/MDinput'
-import { fetchArticle, createArticle } from '@/api/article'
+import { createArticle } from '@/api/article'
 import { getCategoryList } from '@/api/category'
 
 const defaultForm = {

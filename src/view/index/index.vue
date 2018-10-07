@@ -26,7 +26,7 @@
 	</div>
 </template>
 <script>
-	import { fetchList } from '@/api/article'
+	import { getArticleList } from '@/api/article'
 	import ScrollReveal from 'scrollreveal'
 	import { Loading } from 'element-ui'
 	export default {
@@ -49,8 +49,8 @@
 					}
 				],
 				listQuery: {
-					page: 1,
-			        limit: 5
+					pageNo: 1,
+	        pageSize: 5
 				},
 				listLoading: false,
 				lmStyle: {
@@ -64,7 +64,7 @@
 			}
 		},
 		created() {
-			// this.getList()
+			this.getList()
 		},
 		mounted(){
 			window.addEventListener('scroll', this.handleScroll)
@@ -75,11 +75,11 @@
 		methods: {
 			getList(){
 				this.loadStatus = false;
-				fetchList(this.listQuery).then(response => {
+				getArticleList(this.listQuery).then(response => {
 					// let loadingInstance = Loading.service({
 					// 	target: ".blogs-loading"
 					// })
-					this.list = this.list.concat(response.data.items)
+					this.list = this.list.concat(response.data.records)
 					this.total = this.total + response.data.total
 					// loadingInstance.close();
 					this.loadStatus = true;

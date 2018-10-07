@@ -1,39 +1,38 @@
 import request from '@/utils/request'
 import path from './path'
+import { param } from '@/utils'
 
+//登陆
 export function login(data) {
   return request({
-    url: path+'/blog/user/login',
+    url: path+'/userLogin',
     method: 'post',
-    data: data
+    data: param(data)
   })
 }
 
+//注册
 export function register(data){
   return request({
-    url: path+'/blog/user/registry',
+    url: path+'/registry',
     method: 'post',
-    data
+    data: param(data)
   })
 }
 
+
+//登出
 export function logout() {
   return request({
-    url: path+'/login/logout',
+    url: path+'/userLogout',
     method: 'post'
   })
 }
 
-export function checkLoginStatus() {
-  return request({
-    url: path+"/blog/user/checkLogin",
-    method: 'get'
-  })
-}
-
+//获取用户信息
 export function getUserInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/user/getUserInfo',
     method: 'get',
     params: { token }
   })

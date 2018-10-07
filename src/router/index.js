@@ -25,6 +25,16 @@ export const constantRouterMap = [
       name: 'editArtical',
       meta: { title: '编辑文章', noCache: true }
     }]
+  },{
+    path: "/articalList",
+    component: MainLayout,
+    redirect: '/articalList/index',
+    children: [{
+      path: '/articalList/index',
+      component: () => import('@/view/index/ArticalList'),
+      name: 'articalList',
+      meta: { title: '文章列表', noCache: true }
+    }]
   },
   {
     path: "/essays",
