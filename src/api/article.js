@@ -6,7 +6,7 @@ export function createArticle(data) {
   return request({
     url: '/article/add',
     method: 'post',
-    data
+    data: param(data)
   })
 }
 

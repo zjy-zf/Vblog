@@ -20,7 +20,7 @@
               <el-row>
                 <el-col :span="8">
                   <el-form-item label-width="45px" label="标签:" class="postInfo-container-item">
-                    <el-input v-model="postForm.tag" placeholder="多标签请用逗号分隔"></el-input>
+                    <el-input v-model="postForm.tags" placeholder="多标签请用逗号分隔"></el-input>
                   </el-form-item>
                 </el-col>
 
@@ -69,7 +69,7 @@
 <script>
 import Tinymce from '@/components/Tinymce'
 import MDinput from '@/components/MDinput'
-import { createArticle } from '@/api/article'
+import { createArticle, getArticleDetail } from '@/api/article'
 import { getCategoryList } from '@/api/category'
 
 const defaultForm = {
@@ -123,11 +123,11 @@ export default {
   methods: {
     getCategoryList() {
       getCategoryList().then(response => {
-        this.categoryOptions = response.data.data
+        this.categoryOptions = response.data
       })
     },
     fetchData(id) {
-      fetchArticle(id).then(response => {
+      getArticleDetail(id).then(response => {
         this.postForm = response.data
         // Just for test
         this.postForm.title += `   Article Id:${this.postForm.id}`

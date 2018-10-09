@@ -44,7 +44,7 @@ export const constantRouterMap = [
       path: '/essays/index',
       component: () => import('@/view/essays'),
       name: 'essays',
-      meta: { title: '韶华随笔', noCache: true }
+      meta: { title: '生活笔记', noCache: true }
     }]
   },
   {
@@ -55,50 +55,28 @@ export const constantRouterMap = [
       path: '/technology/index',
       component: () => import('@/view/technology'),
       name: 'technology',
-      meta: { title: '技术分享', noCache: true }
+      meta: { title: '技术杂谈', noCache: true }
     }]
   },
   {
-    path: "/classify",
+    path: "/message",
     component: Layout,
-    redirect: '/classify/index',
+    redirect: '/message/index',
     children: [{
-      path: '/classify/index',
-      component: () => import('@/view/classify'),
-      name: 'classify',
-      meta: { title: '个人归档', noCache: true }
+      path: '/message/index',
+      component: () => import('@/view/message'),
+      name: 'message',
+      meta: { title: '留言板', noCache: true }
     }]
   },
   {
-    path: "/book",
+    path: "/me",
     component: Layout,
-    redirect: '/book/index',
+    redirect: '/me/index',
     children: [{
-      path: '/book/index',
-      component: () => import('@/view/book'),
-      name: 'book',
-      meta: { title: '书屋', noCache: true }
-    }]
-  },
-  {
-    path: "/leaveMessage",
-    component: Layout,
-    redirect: '/leaveMessage/index',
-    children: [{
-      path: '/leaveMessage/index',
-      component: () => import('@/view/leaveMessage'),
-      name: 'leaveMessage',
-      meta: { title: 'Blog留言', noCache: true }
-    }]
-  },
-  {
-    path: "/aboutMone",
-    component: Layout,
-    redirect: '/aboutMone/index',
-    children: [{
-      path: '/aboutMone/index',
+      path: '/me/index',
       component: () => import('@/view/aboutMone'),
-      name: 'aboutMone',
+      name: 'me',
       meta: { title: '关于我', noCache: true }
     }]
   }

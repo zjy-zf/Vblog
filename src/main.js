@@ -10,11 +10,18 @@ import store from './store'
 import './icons' // icon
 // import './mock'
 // import './permission'
+import * as filters from './filters' // global filters
+// register global utility filters.
 
-Vue.config.productionTip = false
 Vue.use(Element, {
 	size: 'medium' // set element-ui default size
 })
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

@@ -39,6 +39,7 @@
 				// checkLoginStatus().then(response => {
 				// 	this.$router.push({path: "/editArtical"});
 				// })
+				console.log(this.userInfo)
 				this.$router.push({path: "/editArtical"})
 			},
 			login() {

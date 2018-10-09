@@ -6,18 +6,18 @@
 	      </el-carousel-item>
 	    </el-carousel>
 	    <div class="blog-datalist">
-	    	<el-card shadow="always" class="blog-datalist-box" v-for="i in [1,2,3,4,5,6,7,8,9,10]" :key="i">
+	    	<el-card shadow="always" class="blog-datalist-box" v-for="item in list" :key="item.id">
 		      <article>
 		      	<header>
-		      		<a href="javascript:void(0)" class="article-header-label">Python</a>
+		      		<a href="javascript:void(0)" class="article-header-label">{{item.tags}}</a>
 		      		<h2 class="article-header-title">
-		      			<a href="javascript:void(0)">破解网站登录加密–RSA</a>
+		      			<a href="javascript:void(0)">{{item.title}}</a>
 		      		</h2>
 		      	</header>
-		      	<p>想查数据就免不了搜索，搜索就离不开搜索引擎，百度、谷歌都是一个非常庞大复杂的搜索引擎，他们几乎索引了互联网上开放的所有网页和数据。然而对于我们自己的业务数据来说，肯定就没必要用这么复杂的技术了，如果我们想实现自己的搜索引擎，方便存储和检索，Elasticsearch 就是不二选择，它是一个全文搜索引擎，可以快速地储存、搜索和分析海量数据。</p>
+		      	<p>{{item.digest}}</p>
 		      	<footer class="article-auth">
 		      		<span><svg-icon icon-class="user"></svg-icon> 周天</span>
-		      		<span><i class="el-icon-time"></i> 2018-09-20 14:17:21</span>
+		      		<span><i class="el-icon-time"></i> {{item.publishTime | parseTime}}</span>
 		      		<span><svg-icon icon-class="comment"></svg-icon> 10</span>
 		      	</footer>
 		      </article>
@@ -91,7 +91,7 @@
 					const scrollHeight = document.documentElement.scrollHeight
 					let offsetBottom = document.documentElement.scrollTop
 					if (offsetBottom >= (scrollHeight - clientHeight - 10)) {
-						this.listQuery.page += 1;
+						this.listQuery.pageNo += 1;
 						this.getList();
 					}
 				}

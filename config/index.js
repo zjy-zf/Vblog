@@ -12,7 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         "/": {
-            "target": "http://204.152.220.106",
+            // "target": "http://204.152.220.106",
+            "target": "http://test.zhendehenyouyisi.com",
             "secure": false,
             "changeOrigin": true,
         }

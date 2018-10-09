@@ -3,7 +3,7 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
-    userInfo: '',
+    userInfo: {},
     status: '',
     code: '',
     token: getToken(),
@@ -33,6 +33,7 @@ const user = {
       state.status = status
     },
     SET_USERINFO: (state, userInfo) => {
+      console.log(userInfo)
       state.userInfo = userInfo
     }
   },
@@ -43,7 +44,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           commit('SET_USERINFO', response.data)
-          resolve()
+          resolve(response)
         }).catch(error => {
           reject(error)
         })

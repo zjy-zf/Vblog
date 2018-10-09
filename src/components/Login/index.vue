@@ -76,14 +76,8 @@
 				this.$store.dispatch('closeLoginDialog')
 			},
 			loginSubmit(){
-				/*login(this.loginForm).then(response => {
-					this.$message({
-	          message: '登陆成功',
-	          type: 'success'
-	        })
-	        this.$store.dispatch('closeLoginDialog')
-				})*/
-				this.$store.dispatch('Login').then(response => {
+
+				this.$store.dispatch('Login', this.loginForm).then(response => {
 					this.$message({
 	          message: '登陆成功',
 	          type: 'success'

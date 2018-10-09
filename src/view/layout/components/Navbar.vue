@@ -10,7 +10,7 @@
         background-color="#BFAB86"
         text-color="#fff"
         active-text-color="#ffd04b"
-        
+        style="border-bottom: none"
       >
       <navbar-item
         v-for="item in menu"
@@ -40,7 +40,7 @@
     },
     created() {
       getMenu().then(response => {
-        this.menu = response.data.data
+        this.menu = response.data
       })
     },
     computed: {
