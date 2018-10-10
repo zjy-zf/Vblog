@@ -33,7 +33,7 @@ const user = {
       state.status = status
     },
     SET_USERINFO: (state, userInfo) => {
-      console.log(userInfo)
+      console.log(state.userInfo, userInfo)
       state.userInfo = userInfo
     }
   },
@@ -44,6 +44,8 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
           commit('SET_USERINFO', response.data)
+          commit('SET_TOKEN', response.data.id)
+          setToken(response.data.id)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -52,23 +54,11 @@ const user = {
     },
 
     // 获取用户信息
-    GetUserInfo({ commit, state }) {
+    GetUserInfo({ commit, state }, userId) {
       return new Promise((resolve, reject) => {
-        getUserInfo(state.token).then(response => {
-          if (!response.data) { // 由于mockjs 不支持自定义状态码只能这样hack
-            reject('error')
-          }
-          const data = response.data
-
-          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.roles)
-          } else {
-            reject('getInfo: roles must be a non-null array !')
-          }
-
-          commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
-          commit('SET_INTRODUCTION', data.introduction)
+        console.log({ id: userId })
+        getUserInfo({ id: userId }).then(response => {
+          commit('SET_USERINFO', response.data)
           resolve(response)
         }).catch(error => {
           reject(error)
@@ -76,26 +66,12 @@ const user = {
       })
     },
 
-    // 第三方验证登录
-    // LoginByThirdparty({ commit, state }, code) {
-    //   return new Promise((resolve, reject) => {
-    //     commit('SET_CODE', code)
-    //     loginByThirdparty(state.status, state.email, state.code).then(response => {
-    //       commit('SET_TOKEN', response.data.token)
-    //       setToken(response.data.token)
-    //       resolve()
-    //     }).catch(error => {
-    //       reject(error)
-    //     })
-    //   })
-    // },
-
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        logout().then(() => {
           commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
+          commit('SET_USERINFO', {})
           removeToken()
           resolve()
         }).catch(error => {

@@ -14,6 +14,10 @@ export const constantRouterMap = [
       component: () => import('@/view/index'),
       name: 'index',
       meta: { title: '首页', noCache: true }
+    },{
+      path: '/articalList/Detail/:id',
+      component: () => import('@/view/artical/ArticalDetail'),
+      name: 'articalDetail',
     }]
   },{
     path: "/editArtical",

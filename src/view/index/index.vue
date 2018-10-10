@@ -11,17 +11,19 @@
 		      	<header>
 		      		<a href="javascript:void(0)" class="article-header-label">{{item.tags}}</a>
 		      		<h2 class="article-header-title">
-		      			<a href="javascript:void(0)">{{item.title}}</a>
+		      			<a href="javascript:void(0)" @click="viewArticalDetail(item.id)">{{item.title}}</a>
 		      		</h2>
 		      	</header>
 		      	<p>{{item.digest}}</p>
-		      	<footer class="article-auth">
-		      		<span><svg-icon icon-class="user"></svg-icon> 周天</span>
+		      	<footer class="article-auth" style="margin-top: 10px">
+		      		<span><svg-icon icon-class="user"></svg-icon> {{item.userName}}</span>
 		      		<span><i class="el-icon-time"></i> {{item.publishTime | parseTime}}</span>
-		      		<span><svg-icon icon-class="comment"></svg-icon> 10</span>
+		      		<span><svg-icon icon-class="eye"></svg-icon> {{item.clickHit}}浏览</span>
+		      		<span><svg-icon icon-class="comment"></svg-icon> {{item.replyHit}}评论</span>
 		      	</footer>
 		      </article>
 		    </el-card>
+		    <div class="blogs-loading" v-loading="listLoading"></div>
 	    </div>
 	</div>
 </template>
@@ -29,6 +31,7 @@
 	import { getArticleList } from '@/api/article'
 	import ScrollReveal from 'scrollreveal'
 	import { Loading } from 'element-ui'
+	import { parseTime } from '@/utils'
 	export default {
 		name: "index",
 		data(){
@@ -63,6 +66,11 @@
 				loadStatus: false, //请求时不响应scroll事件标识
 			}
 		},
+		filters: {
+			parseTime(value) {
+				return parseTime(value)
+			}
+		},
 		created() {
 			this.getList()
 		},
@@ -74,15 +82,13 @@
 		},
 		methods: {
 			getList(){
-				this.loadStatus = false;
+				this.loadStatus = false
+				this.listLoading = true
 				getArticleList(this.listQuery).then(response => {
-					// let loadingInstance = Loading.service({
-					// 	target: ".blogs-loading"
-					// })
 					this.list = this.list.concat(response.data.records)
 					this.total = this.total + response.data.total
-					// loadingInstance.close();
-					this.loadStatus = true;
+					this.loadStatus = true
+					this.listLoading = false
 				})
 			},
 			handleScroll() {
@@ -95,16 +101,29 @@
 						this.getList();
 					}
 				}
-				
+			},
+			viewArticalDetail(articalId){
+				this.$router.push({ path: `/articalList/Detail/${articalId}` })
 			}
 		}
 	}
 </script>
 <style rel="style/scss" lang="scss" scoped>
+	.blogs-loading {
+		height: 40px;
+		margin-bottom: 20px;
+		background-color: #eee;
+		div {
+			background-color: #eee;
+		}
+	}
 	.blog-datalist {
 		margin-top: 20px;
 		.blog-datalist-box {
 			margin-bottom: 20px;
+			&:last-child {
+				margin-bottom: 0px;
+			}
 			article {
 				header {
 					margin-bottom: 15px;

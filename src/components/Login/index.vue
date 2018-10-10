@@ -15,7 +15,7 @@
 			    <el-input v-model="loginForm.userAccount" placeholder="用户名" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item> 
-			    <el-input v-model="loginForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
+			    <el-input @keyup.enter.native="loginSubmit" v-model="loginForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item>
 			    <el-button type="primary" @click="loginSubmit" style="width: 300px">登陆</el-button>
@@ -31,7 +31,7 @@
 			    <el-input v-model="registerForm.nickName" placeholder="昵称" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item>
-			    <el-input v-model="registerForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
+			    <el-input @keyup.enter.native="registerClick" v-model="registerForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <!-- <el-form-item>
 			    <el-input v-model="registerForm.yanzheng" placeholder="验证码" style="width: 200px"></el-input>
@@ -60,6 +60,22 @@
 					nickName: "",
 					password: "",
 					yanzheng: ""
+				}
+			}
+		},
+		watch: {
+			dialogVisible(value, oldValue) {
+				if(value !== oldValue) {
+					this.loginForm = {
+						userAccount: "",
+						password: ""
+					}
+					this.registerForm = {
+						userAccount: "",
+						nickName: "",
+						password: "",
+						yanzheng: ""
+					}
 				}
 			}
 		},

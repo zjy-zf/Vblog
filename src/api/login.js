@@ -34,7 +34,7 @@ export function getUserInfo(token) {
   return request({
     url: '/user/getUserInfo',
     method: 'get',
-    params: { token }
+    params: token
   })
 }
 

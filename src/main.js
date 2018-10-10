@@ -9,7 +9,7 @@ import '@/style/index.scss' // global css
 import store from './store'
 import './icons' // icon
 // import './mock'
-// import './permission'
+import './permission'
 import * as filters from './filters' // global filters
 // register global utility filters.
 

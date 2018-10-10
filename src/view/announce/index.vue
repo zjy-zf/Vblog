@@ -7,16 +7,17 @@
 				</p>
 			</div>
 			<div class="blog-announce-right">
-				<a href="javascript:void(0)" @click="editArtical" ><svg-icon icon-class="user" style="color: #999;"></svg-icon> 投稿</a>
-				<a v-if="!userInfo" href="javascript:void(0)" @click="login" style="margin-left: 20px"><svg-icon icon-class="login" style="color: #999;"></svg-icon> 登陆</a>
-				<el-dropdown v-if="userInfo">
+				<a v-if="userInfo && userInfo.nickName" href="javascript:void(0)" @click="editArtical" ><svg-icon icon-class="user" style="color: #999;"></svg-icon> 投稿</a>
+				<a v-if="!userInfo.nickName" href="javascript:void(0)" @click="login" style="margin-left: 20px"><svg-icon icon-class="login" style="color: #999;"></svg-icon> 登陆</a>
+				<el-dropdown v-if="userInfo && userInfo.nickName" class="dropdown-user"
+				@command="handleCommand">
 				  <span class="el-dropdown-link">
 				  	{{userInfo.nickName}}
 				  </span>
 				  <el-dropdown-menu slot="dropdown">
 				    <el-dropdown-item>评论</el-dropdown-item>
 				    <el-dropdown-item>收藏</el-dropdown-item>
-				    <el-dropdown-item>退出</el-dropdown-item>
+				    <el-dropdown-item  command="logout">退出</el-dropdown-item>
 				  </el-dropdown-menu>
 				</el-dropdown>
 			</div>
@@ -39,11 +40,22 @@
 				// checkLoginStatus().then(response => {
 				// 	this.$router.push({path: "/editArtical"});
 				// })
-				console.log(this.userInfo)
 				this.$router.push({path: "/editArtical"})
 			},
 			login() {
 				this.$store.dispatch("openLoginDialog")
+			},
+			handleCommand(command) {
+				if(command === "logout"){
+					this.$store.dispatch("LogOut").then(response => {
+						this.$message({
+		          message: '退出登陆',
+		          type: 'success'
+		        })
+		        this.$router.push({ path: '/' })
+					})
+				}
+				
 			}
 		}
 	}
@@ -64,9 +76,12 @@
 			.blog-announce-right {
 				display: table-cell;
 				text-align: right;
+				.dropdown-user {
+					color: #00a67c;
+					font-size: 14px;
+					margin-left: 10px;
+				}
 			}
 		}
-		
-		
 	}
 </style>
