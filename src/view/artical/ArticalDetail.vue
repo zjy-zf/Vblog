@@ -4,7 +4,7 @@
     <header class="article-header">
       <h1 class="article-title">{{article.title}}</h1>
       <div class="meta">
-        <span><svg-icon icon-class="user"></svg-icon> {{article.tags}}</span>
+        <span><svg-icon icon-class="tag"></svg-icon> {{article.tags}}</span>
         <span><svg-icon icon-class="user"></svg-icon> {{article.userName}}</span>
         <span><i class="el-icon-time"></i> {{article.publishTime | parseTime}}</span>
         <span><svg-icon icon-class="eye"></svg-icon> {{article.clickHit}}浏览</span>
