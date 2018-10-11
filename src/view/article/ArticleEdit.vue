@@ -28,7 +28,7 @@
                   <el-form-item label-width="80px" label="分类:" class="postInfo-container-item" prop="categoryId">
                     <el-select v-model="postForm.categoryId" placeholder="请选择文章分类">
                       <el-option v-for="item in categoryOptions" 
-                      :key="item.id" :value="item.id" :label="item.name"></el-option>
+                      :key="item.id" :value="item.id" :label="item.cname"></el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>

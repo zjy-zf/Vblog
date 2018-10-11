@@ -7,6 +7,7 @@
       <el-aside width="360px" class="blog-aside"><Siderbar/></el-aside>
     </el-container>
     <el-footer class="app-footer">天哥版权所有</el-footer>
+    <!-- <FooterView/> -->
     <BackToTop/>
     <Login/>
   </el-container>
@@ -18,7 +19,7 @@ import BackToTop from '@/components/ScrollToTop/BackToTop'
 import Siderbar from './components/Sidebar'
 import Announce from '@/view/announce'
 import Login from '@/components/Login'
-
+import FooterView from './components/FooterView'
 export default {
   name: 'layout',
   components: {
@@ -26,7 +27,8 @@ export default {
     BackToTop,
     Siderbar,
     Announce,
-    Login
+    Login,
+    FooterView
   },
   computed: {
 

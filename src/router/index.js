@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '@/view/home/Home'
 import Layout from '@/view/layout/Layout'
 import MainLayout from '@/view/managerLayout/Layout'
 Vue.use(Router)
@@ -7,37 +8,37 @@ Vue.use(Router)
 export const constantRouterMap = [
   {
     path: "",
+    component: Home,
+
+  },{
+    path: "/articleDetail",
     component: Layout,
-    redirect: 'index',
+    redirect: '',
     children: [{
-      path: 'index',
-      component: () => import('@/view/index'),
-      name: 'index',
-      meta: { title: '首页', noCache: true }
-    },{
-      path: '/articalList/Detail/:id',
-      component: () => import('@/view/artical/ArticalDetail'),
-      name: 'articalDetail',
+      path: '/articleDetail/:id',
+      component: () => import('@/view/article/ArticleDetail'),
+      name: 'articleDetail',
+      meta: { title: '文章详细' }
     }]
   },{
-    path: "/editArtical",
+    path: "/articleEdit",
     component: MainLayout,
-    redirect: '/editArtical/index',
+    redirect: '/articleEdit/index',
     children: [{
-      path: '/editArtical/index',
-      component: () => import('@/view/artical/EditArtical'),
-      name: 'editArtical',
-      meta: { title: '编辑文章', noCache: true }
+      path: '/articleEdit/index',
+      component: () => import('@/view/article/ArticleEdit'),
+      name: 'articleEdit',
+      meta: { title: '编辑文章'}
     }]
   },{
-    path: "/articalList",
+    path: "/articleList",
     component: MainLayout,
-    redirect: '/articalList/index',
+    redirect: '/articleList/index',
     children: [{
-      path: '/articalList/index',
-      component: () => import('@/view/index/ArticalList'),
-      name: 'articalList',
-      meta: { title: '文章列表', noCache: true }
+      path: '/articleList/index',
+      component: () => import('@/view/article/ArticleList'),
+      name: 'articleList',
+      meta: { title: '文章列表'}
     }]
   },
   {
@@ -48,7 +49,18 @@ export const constantRouterMap = [
       path: '/essays/index',
       component: () => import('@/view/essays'),
       name: 'essays',
-      meta: { title: '生活笔记', noCache: true }
+      meta: { title: '生活笔记'}
+    }]
+  },
+  {
+    path: "/resources",
+    component: Layout,
+    redirect: '/resources/index',
+    children: [{
+      path: '/resources/index',
+      component: () => import('@/view/resources'),
+      name: 'resources',
+      meta: { title: '资源共享'}
     }]
   },
   {
@@ -59,7 +71,7 @@ export const constantRouterMap = [
       path: '/technology/index',
       component: () => import('@/view/technology'),
       name: 'technology',
-      meta: { title: '技术杂谈', noCache: true }
+      meta: { title: '技术杂谈'}
     }]
   },
   {
@@ -70,7 +82,7 @@ export const constantRouterMap = [
       path: '/message/index',
       component: () => import('@/view/message'),
       name: 'message',
-      meta: { title: '留言板', noCache: true }
+      meta: { title: '留言板'}
     }]
   },
   {
@@ -81,13 +93,13 @@ export const constantRouterMap = [
       path: '/me/index',
       component: () => import('@/view/aboutMone'),
       name: 'me',
-      meta: { title: '关于我', noCache: true }
+      meta: { title: '关于我' }
     }]
   }
 ]
 
 export default new Router({
-  // mode: "history",
+  mode: "history",
   routes: constantRouterMap
 })
 

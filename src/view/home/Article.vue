@@ -103,7 +103,7 @@
 				}
 			},
 			viewArticalDetail(articalId){
-				this.$router.push({ path: `/articalList/Detail/${articalId}` })
+				this.$router.push({ path: `/articleDetail/${articalId}` })
 			}
 		}
 	}

@@ -40,7 +40,7 @@
 				// checkLoginStatus().then(response => {
 				// 	this.$router.push({path: "/editArtical"});
 				// })
-				this.$router.push({path: "/editArtical"})
+				this.$router.push({path: "/articleEdit"})
 			},
 			login() {
 				this.$store.dispatch("openLoginDialog")

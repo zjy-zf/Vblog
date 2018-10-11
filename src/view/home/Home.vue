@@ -3,32 +3,35 @@
     <navbar></navbar>
     <Announce/>
     <el-container class="ztblog-container">
-      <el-main class="blog-main"><router-view></router-view></el-main>
+      <el-main class="blog-main"><ArticleList/></el-main>
+      <el-aside width="360px" class="blog-aside"><Siderbar/></el-aside>
     </el-container>
     <el-footer class="app-footer">天哥版权所有</el-footer>
     <!-- <FooterView/> -->
     <BackToTop/>
+    <Login/>
   </el-container>
 </template>
 
 <script>
 import Navbar from '@/view/layout/components/Navbar'
 import BackToTop from '@/components/ScrollToTop/BackToTop'
+import Siderbar from '@/view/layout/components/Sidebar'
 import Announce from '@/view/announce'
+import Login from '@/components/Login'
 import FooterView from '@/view/layout/components/FooterView'
+import ArticleList from './Article'
+
 export default {
-  name: 'MainLayout',
+  name: 'Home',
   components: {
     Navbar,
     BackToTop,
+    Siderbar,
     Announce,
+    Login,
+    ArticleList,
     FooterView
-  },
-  computed: {
-
-  },
-  methods: {
-
   }
 }
 </script>

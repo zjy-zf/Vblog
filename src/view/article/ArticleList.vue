@@ -1,21 +1,21 @@
 <template>
-	<el-table
-	  :data="tableData"
-	  style="width: 100%">
-	  <el-table-column
-	    prop="date"
-	    label="标题"
-	    width="180">
-	  </el-table-column>
-	  <el-table-column
-	    prop="name"
-	    label="标签"
-	    width="180">
-	  </el-table-column>
-	  <el-table-column
-	    prop="address"
-	    label="分类">
-	  </el-table-column>
+  <el-table
+    :data="tableData"
+    style="width: 100%">
+    <el-table-column
+      prop="date"
+      label="标题"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="name"
+      label="标签"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="address"
+      label="分类">
+    </el-table-column>
     <el-table-column
       prop="address"
       label="展现方式">
@@ -38,11 +38,12 @@
         <el-button type="text" size="small">删除</el-button>
       </template>
     </el-table-column>
-	</el-table>
+  </el-table>
 </template>
 
 <script>
 export default {
+  name: 'ArticleList',
   data() {
     return {
       tableData: [{
