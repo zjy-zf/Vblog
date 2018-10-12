@@ -7,7 +7,6 @@
       <el-aside width="360px" class="blog-aside"><Siderbar/></el-aside>
     </el-container>
     <el-footer class="app-footer">天哥版权所有</el-footer>
-    <!-- <FooterView/> -->
     <BackToTop/>
     <Login/>
   </el-container>
@@ -19,7 +18,6 @@ import BackToTop from '@/components/ScrollToTop/BackToTop'
 import Siderbar from '@/view/layout/components/Sidebar'
 import Announce from '@/view/announce'
 import Login from '@/components/Login'
-import FooterView from '@/view/layout/components/FooterView'
 import ArticleList from './Article'
 
 export default {
@@ -30,18 +28,17 @@ export default {
     Siderbar,
     Announce,
     Login,
-    ArticleList,
-    FooterView
+    ArticleList
   }
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
 .app-container{
   background-color: #eee;
   padding: 0;
   .ztblog-container {
-    width: 1200px;
+    width: 80%;
     margin:0 auto;
     .blog-main {
       padding: 20px 10px 0 0;

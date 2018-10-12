@@ -6,7 +6,6 @@
       <el-main class="blog-main"><router-view></router-view></el-main>
     </el-container>
     <el-footer class="app-footer">天哥版权所有</el-footer>
-    <!-- <FooterView/> -->
     <BackToTop/>
   </el-container>
 </template>
@@ -15,14 +14,12 @@
 import Navbar from '@/view/layout/components/Navbar'
 import BackToTop from '@/components/ScrollToTop/BackToTop'
 import Announce from '@/view/announce'
-import FooterView from '@/view/layout/components/FooterView'
 export default {
   name: 'MainLayout',
   components: {
     Navbar,
     BackToTop,
-    Announce,
-    FooterView
+    Announce
   },
   computed: {
 

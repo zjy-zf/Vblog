@@ -14,7 +14,7 @@ export function login(data) {
 //注册
 export function register(data){
   return request({
-    url: path+'/registry',
+    url: path + '/registry',
     method: 'post',
     data: param(data)
   })
@@ -32,7 +32,7 @@ export function logout() {
 //获取用户信息
 export function getUserInfo(token) {
   return request({
-    url: '/user/getUserInfo',
+    url: path + '/user/getUserInfo',
     method: 'get',
     params: token
   })

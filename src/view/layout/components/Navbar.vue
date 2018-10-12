@@ -63,9 +63,10 @@
     background-color: #BFAB86;
     text-align: center;
     position: relative;
+    padding: 0;
     .ztblog-el-menu {
       display: inline-block;
-      width: 1200px;
+      width: 80%;
     }
     
   }

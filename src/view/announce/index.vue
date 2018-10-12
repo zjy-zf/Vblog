@@ -63,7 +63,7 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 	.blog-announce {
-		width: 1200px;
+		width: 80%;
 		margin: 0 auto;
 		.blog-announce-box {
 			display: table;

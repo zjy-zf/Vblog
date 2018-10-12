@@ -1,10 +1,11 @@
-/*收藏API*/
 import request from '@/utils/request'
+import path from './path'
+import { param } from '@/utils'
 
 //添加收藏
 export function addCollection(data){
   return request({
-    url: '/collection/add',
+    url: path + '/collection/add',
     method: 'post',
     data: data
   })
@@ -13,7 +14,7 @@ export function addCollection(data){
 //删除收藏
 export function delCollection(data){
   return request({
-    url: '/collection/del',
+    url: path + '/collection/del',
     method: 'post',
     data: data
   })
@@ -22,7 +23,7 @@ export function delCollection(data){
 //获取收藏列表
 export function getCollectionList(){
   return request({
-    url: '/collection/list',
+    url: path + '/collection/list',
     method: 'get'
   })
 }
