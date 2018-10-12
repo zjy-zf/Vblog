@@ -6,7 +6,7 @@
       <el-main class="blog-main"><router-view></router-view></el-main>
       <el-aside width="360px" class="blog-aside"><Siderbar/></el-aside>
     </el-container>
-    <el-footer class="app-footer">天哥版权所有</el-footer>
+    <el-footer class="app-footer">天天向上好同学版权所有 &#169; 2018</el-footer>
     <BackToTop/>
     <Login/>
   </el-container>
@@ -41,7 +41,7 @@ export default {
   background-color: #eee;
   padding: 0;
   .ztblog-container {
-    width: 1200px;
+    width: 80%;
     margin:0 auto;
     .blog-main {
       padding: 20px 10px 0 0;

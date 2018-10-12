@@ -5,7 +5,7 @@
     <el-container class="ztblog-container">
       <el-main class="blog-main"><router-view></router-view></el-main>
     </el-container>
-    <el-footer class="app-footer">天哥版权所有</el-footer>
+    <el-footer class="app-footer">天天向上好同学版权所有 &#169; 2018</el-footer>
     <BackToTop/>
   </el-container>
 </template>
