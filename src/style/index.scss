@@ -91,6 +91,10 @@ div:focus{
   display: block;
 }
 
+.el-loading-mask {
+  background-color: transparent;
+}
+
 .clearfix {
   &:after {
     visibility: hidden;

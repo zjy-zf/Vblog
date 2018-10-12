@@ -35,7 +35,7 @@ export default {
   background-color: #eee;
   padding: 0;
   .ztblog-container {
-    width: 1200px;
+    width: 80%;
     margin:0 auto;
     .blog-main {
       padding: 20px 10px 0 0;
@@ -52,6 +52,5 @@ export default {
     line-height: 52px;
     border-top: 8px solid #d56464;
   }
-
 }
 </style>

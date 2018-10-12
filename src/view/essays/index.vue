@@ -1,5 +1,5 @@
 <template>
-	<div class="blog-main-container">essays</div>
+	<div class="blog-main-container"></div>
 </template>
 <script>
 	export default {

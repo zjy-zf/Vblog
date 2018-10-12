@@ -3,7 +3,7 @@
       class="ztblog-el-header"
     >
       <el-menu
-        :default-active="this.$route.path"
+        :default-active="activePath"
         class="ztblog-el-menu"
         mode="horizontal"
         @select="handleSelect"
@@ -39,6 +39,7 @@
       }
     },
     created() {
+      console.log(this.$route)
       getMenu().then(response => {
         this.menu = response.data
       })
@@ -46,11 +47,15 @@
     computed: {
       ...mapGetters([
           "permission_routers"
-        ])
+        ]),
+      activePath() {
+        let pathName = this.$route.name || ""
+        let index = pathName.indexOf(".") > 0 ? pathName.indexOf("."):pathName.length
+        return '/' + pathName.slice(0, index)
+      }
     },
 		methods: {
       handleSelect(key, keyPath){
-        console.log(key, keyPath);
         this.$router.push({path: key});
       }
 		}

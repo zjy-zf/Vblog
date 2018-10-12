@@ -10,11 +10,11 @@
 	>
 	  <el-tabs tab-position="left" style="height: 300px;">
 	    <el-tab-pane label="登录">
-	    	<el-form :inline="true" :model="loginForm" class="demo-form-inline">
-			  <el-form-item>
-			    <el-input v-model="loginForm.userAccount" placeholder="用户名" style="width: 300px"></el-input>
+	    	<el-form :inline="true" :model="loginForm" ref="loginForm" :rules="loginFormRules" class="demo-form-inline">
+			  <el-form-item prop="userAccount">
+			    <el-input v-model="loginForm.userAccount" placeholder="账号" style="width: 300px"></el-input>
 			  </el-form-item>
-			  <el-form-item> 
+			  <el-form-item prop="password"> 
 			    <el-input @keyup.enter.native="loginSubmit" v-model="loginForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <el-form-item>
@@ -23,14 +23,14 @@
 			</el-form>
 	    </el-tab-pane>
 	    <el-tab-pane label="注册">
-	    	<el-form :inline="true" :model="registerForm" class="demo-form-inline">
-			  <el-form-item>
+	    	<el-form :inline="true" :model="registerForm" ref="registerForm" :rules="registerFormRules" class="demo-form-inline">
+			  <el-form-item prop="userAccount">
 			    <el-input v-model="registerForm.userAccount" placeholder="账号" style="width: 300px"></el-input>
 			  </el-form-item>
-			  <el-form-item>
+			  <el-form-item prop="nickName">
 			    <el-input v-model="registerForm.nickName" placeholder="昵称" style="width: 300px"></el-input>
 			  </el-form-item>
-			  <el-form-item>
+			  <el-form-item prop="password">
 			    <el-input @keyup.enter.native="registerClick" v-model="registerForm.password" type="password" placeholder="密码" style="width: 300px"></el-input>
 			  </el-form-item>
 			  <!-- <el-form-item>
@@ -50,6 +50,27 @@
 	export default {
 		name: 'login',
 		data() {
+			var validateUserAccount = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入账号'));
+        } else {
+          callback();
+        }
+      };
+      var validatePassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          callback();
+        }
+      };
+      var validatenickName = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入昵称'));
+        } else {
+          callback();
+        }
+      };
 			return {
 				loginForm: {
 					userAccount: "",
@@ -60,6 +81,15 @@
 					nickName: "",
 					password: "",
 					yanzheng: ""
+				},
+				loginFormRules: {
+					userAccount: { validator: validateUserAccount, trigger: 'blur' },
+					password: { validator: validatePassword, trigger: 'blur' }
+				},
+				registerFormRules: {
+					userAccount: { validator: validateUserAccount, trigger: 'blur' },
+					nickName: { validator: validatenickName, trigger: 'blur'  },
+					password: { validator: validatePassword, trigger: 'blur' }
 				}
 			}
 		},
@@ -92,23 +122,35 @@
 				this.$store.dispatch('closeLoginDialog')
 			},
 			loginSubmit(){
-
-				this.$store.dispatch('Login', this.loginForm).then(response => {
-					this.$message({
-	          message: '登陆成功',
-	          type: 'success'
-	        })
-	        this.$store.dispatch('closeLoginDialog')
-				})
+				this.$refs['loginForm'].validate((valid) => {
+          if (valid) {
+            this.$store.dispatch('Login', this.loginForm).then(response => {
+							this.$message({
+			          message: '登陆成功',
+			          type: 'success'
+			        })
+			        this.$store.dispatch('closeLoginDialog')
+						})
+          } else {
+            return false;
+          }
+        });
 			},
 			registerClick(){
-				register(this.registerForm).then(response => {
-					this.$message({
-	          message: '注册成功',
-	          type: 'success'
-	        })
-	        this.$store.dispatch('closeLoginDialog')
-				})
+				this.$refs['registerForm'].validate((valid) => {
+          if (valid) {
+            register(this.registerForm).then(response => {
+							this.$message({
+			          message: '注册成功',
+			          type: 'success'
+			        })
+			        this.$store.dispatch('closeLoginDialog')
+						})
+          } else {
+            return false;
+          }
+        });
+				
 			}
 		}
 	}
