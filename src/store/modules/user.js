@@ -33,7 +33,6 @@ const user = {
       state.status = status
     },
     SET_USERINFO: (state, userInfo) => {
-      console.log(state.userInfo, userInfo)
       state.userInfo = userInfo
     }
   },
@@ -56,7 +55,6 @@ const user = {
     // 获取用户信息
     GetUserInfo({ commit, state }, userId) {
       return new Promise((resolve, reject) => {
-        console.log({ id: userId })
         getUserInfo({ id: userId }).then(response => {
           commit('SET_USERINFO', response.data)
           resolve(response)

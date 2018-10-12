@@ -39,7 +39,6 @@
       }
     },
     created() {
-      console.log(this.$route)
       getMenu().then(response => {
         this.menu = response.data
       })
