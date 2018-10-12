@@ -64,7 +64,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
-      favicon: path.join(__dirname, '..', 'favicon.ico'),
+      // favicon:'./static/favicon.ico',
       title: '博客',
       path: config.dev.assetsPublicPath + config.dev.assetsSubDirectory,
       minify: {
