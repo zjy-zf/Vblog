@@ -74,7 +74,7 @@
  
    },
    backToTop () {
-    scrollIt(0, 1500, this.transitionName, this.currentPageYOffset);
+    scrollIt(0, 300, this.transitionName, this.currentPageYOffset);
    }
   },
   created () {

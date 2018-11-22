@@ -97,8 +97,10 @@
 					const scrollHeight = document.documentElement.scrollHeight
 					let offsetBottom = document.documentElement.scrollTop
 					if (offsetBottom >= (scrollHeight - clientHeight - 10)) {
-						this.listQuery.pageNo += 1;
-						this.getList();
+						if (this.list.length < this.total) {
+							this.listQuery.pageNo += 1;
+							this.getList();
+						}
 					}
 				}
 			},
