@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import { getMenu } from '@/api/menu'
 
 const app = {
   state: {
@@ -7,7 +8,8 @@ const app = {
       withoutAnimation: false
     },
     device: 'desktop',
-    language: Cookies.get('language') || 'en'
+    language: Cookies.get('language') || 'en',
+    menu: []
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
@@ -30,6 +32,9 @@ const app = {
     SET_LANGUAGE: (state, language) => {
       state.language = language
       Cookies.set('language', language)
+    },
+    SET_MENU: (state, menu) => {
+      state.menu = menu
     }
   },
   actions: {
@@ -44,6 +49,12 @@ const app = {
     },
     setLanguage({ commit }, language) {
       commit('SET_LANGUAGE', language)
+    },
+    getMenu({ commit }) {
+      getMenu().then(response => {
+        const menu = response.data
+        commit('SET_MENU', menu)
+      })
     }
   }
 }

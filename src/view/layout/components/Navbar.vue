@@ -35,17 +35,16 @@
     },
     data(){
       return {
-        menu: []
+        
       }
     },
     created() {
-      getMenu().then(response => {
-        this.menu = response.data
-      })
+      
     },
     computed: {
       ...mapGetters([
-          "permission_routers"
+          "permission_routers",
+          'menu'
         ]),
       activePath() {
         let pathName = this.$route.name || ""

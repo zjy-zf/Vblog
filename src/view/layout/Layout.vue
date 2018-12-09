@@ -59,8 +59,5 @@ export default {
     border-top: 8px solid #d56464;
   }
 
-}
-
-
-  
+}  
 </style>

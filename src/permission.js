@@ -20,14 +20,19 @@ router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
   if (getToken()) { // determine if there has token
     /* has token*/
-    store.dispatch('GetUserInfo', getToken()).then(res => { // 拉取user_info
-      next() // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
-    }).catch((err) => {
-      store.dispatch('FedLogOut').then(() => {
-        Message.error(err || 'Verification failed, please login again')
-        next({ path: '/' })
+    if(store.user && store.user.userInfo) {
+      next()
+    } else {
+      store.dispatch('GetUserInfo', getToken()).then(res => { // 拉取user_info
+        next() // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+      }).catch((err) => {
+        store.dispatch('FedLogOut').then(() => {
+          Message.error(err || 'Verification failed, please login again')
+          next({ path: '/' })
+        })
       })
-    })
+    }
+    
     
   } else {
     /* has no token*/
